@@ -2,27 +2,27 @@ from random import choice
 from cfg_reader import read_cfg
 
 def get_random_word(word_list):
-''' Функция выбирает рандомное слово из списка слов'''
-    return choice(word_list)
+	''' Функция выбирает рандомное слово из списка слов'''
+	return choice(word_list)
     
 def get_guess(used_letters):
-'''Обработка ввода пользователя
+	'''Обработка ввода пользователя
 На вход подается список использованных букв
 На выходе валидный ввод от пользователя (буква
-'''
-    while True:
-        guess = input("Введите букву: ").lower()
-        if len(guess) != 1:
-            print("Пожалуйста, введите одну букву.")
-        elif guess in used_letters:
-            print("Вы уже пробовали эту букву. Попробуйте другую.")
-        elif not guess.isalpha() or not 'а' <= guess <= 'я':
-            print("Пожалуйста, введите русскую букву.")
-        else:
-            return guess
+	'''
+	while True:
+		guess = input("Введите букву: ").lower()
+		if len(guess) != 1:
+			print("Пожалуйста, введите одну букву.")
+		elif guess in used_letters:
+			print("Вы уже пробовали эту букву. Попробуйте другую.")
+		elif not guess.isalpha() or not 'а' <= guess <= 'я':
+			print("Пожалуйста, введите русскую букву.")
+		else:
+			return guess
 
 def display_game(secret_word, used_letters, mistakes, configs):
-''' Отрисовка игры в консоли'''
+	''' Отрисовка игры в консоли'''
 	print("Осталось попыток: {}".format(int(configs["max_retries"]) - mistakes))
 	word = ["*"] * len(secret_word)
 	for i, letter in enumerate(secret_word):
@@ -34,9 +34,9 @@ def display_game(secret_word, used_letters, mistakes, configs):
 	print(configs["hangman"][mistakes])
 	
 def is_correct_word(correct_letters, secret_word):
-'''Функция проверяет соответствует ли ввод пользователя загаданному слову
+	'''Функция проверяет соответствует ли ввод пользователя загаданному слову
    Внутри какая-то магия с типами данных
-'''
+	'''
 	cl = sorted(correct_letters)
 	sw = list(sorted(secret_word))
 	cl_word = ''.join(cl)
@@ -44,8 +44,8 @@ def is_correct_word(correct_letters, secret_word):
 	return cl_word == sw_word
 	
 def play_again():
-    '''Хочет ли пользователь сыграть еще раз'''
-    return input("Хотите сыграть снова? (да или нет): ").lower().startswith('д')
+	'''Хочет ли пользователь сыграть еще раз'''
+	return input("Хотите сыграть снова? (да или нет): ").lower().startswith('д')
 
 # чтение конфигов
 configs = read_cfg("config.cfg")
@@ -84,4 +84,3 @@ while True:
 	
 	
 			
-

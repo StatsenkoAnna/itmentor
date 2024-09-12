@@ -35,13 +35,8 @@ def display_game(secret_word, used_letters, mistakes, configs):
 	
 def is_correct_word(correct_letters, secret_word):
 	'''Функция проверяет соответствует ли ввод пользователя загаданному слову
-   Внутри какая-то магия с типами данных
 	'''
-	cl = sorted(correct_letters)
-	sw = list(sorted(secret_word))
-	cl_word = ''.join(cl)
-	sw_word = ''.join(sw)
-	return cl_word == sw_word
+	return sorted(correct_letters) == sorted(secret_word)
 	
 def play_again():
 	'''Хочет ли пользователь сыграть еще раз'''

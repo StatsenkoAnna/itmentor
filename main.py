@@ -49,8 +49,7 @@ while True:
 
 	game_over = False
 	secret_word = get_random_word(words)
-
-
+	
 	while not game_over: # пока одна игра не окончена
 		used_letters = wrong_letters + correct_letters
 		display_game(secret_word, used_letters, mistakes, configs)
@@ -60,7 +59,6 @@ while True:
 			if set(sorted(correct_letters)) == set(sorted(secret_word)):
 				print(f"Поздравляем! Вы угадали слово: {secret_word}")
 				game_over = True
-			
 		else:
 			wrong_letters.append(guess)
 			mistakes += 1 
@@ -68,10 +66,5 @@ while True:
 				display_game(secret_word, used_letters, mistakes, configs)
 				print(f"Вы проиграли! Загаданное слово было: {secret_word}")
 				game_over = True
-	
 	if not play_again():
 		break
-	
-	
-	
-			

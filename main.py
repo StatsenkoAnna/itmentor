@@ -36,7 +36,7 @@ def display_game(secret_word, used_letters, mistakes, configs):
 def is_correct_word(correct_letters, secret_word):
 	'''Функция проверяет соответствует ли ввод пользователя загаданному слову
 	'''
-	return sorted(correct_letters) == sorted(secret_word)
+	return set(sorted(correct_letters)) == set(sorted(secret_word))
 	
 def play_again():
 	'''Хочет ли пользователь сыграть еще раз'''

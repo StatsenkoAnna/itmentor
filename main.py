@@ -33,6 +33,10 @@ def display_game(secret_word, used_letters, mistakes, configs):
 	print("Использованные буквы: ", used_letters)
 	print(configs["hangman"][mistakes])
 	
+def is_correct_word(correct_letters, secret_word):
+	'''Функция проверяет соответствует ли ввод пользователя загаданному слову
+	'''
+	return set(correct_letters) == set(secret_word)
 	
 def play_again():
 	'''Хочет ли пользователь сыграть еще раз'''
@@ -49,16 +53,18 @@ while True:
 
 	game_over = False
 	secret_word = get_random_word(words)
-	
+
+
 	while not game_over: # пока одна игра не окончена
 		used_letters = wrong_letters + correct_letters
 		display_game(secret_word, used_letters, mistakes, configs)
 		guess = get_guess(used_letters)
 		if guess in secret_word:
 			correct_letters.append(guess)
-			if set(sorted(correct_letters)) == set(sorted(secret_word)):
+			if is_correct_word(correct_letters, secret_word):
 				print(f"Поздравляем! Вы угадали слово: {secret_word}")
 				game_over = True
+			
 		else:
 			wrong_letters.append(guess)
 			mistakes += 1 
@@ -66,5 +72,6 @@ while True:
 				display_game(secret_word, used_letters, mistakes, configs)
 				print(f"Вы проиграли! Загаданное слово было: {secret_word}")
 				game_over = True
+	
 	if not play_again():
 		break
